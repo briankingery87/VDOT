@@ -57,7 +57,7 @@ def myClip(featureClass, LIST, fieldName):
         for Master_FC in CLIP:
             in_features = Master_FC
             clip_features = lyr
-            out_feature_class = 'Clip_' + lyr + '_' + item + '_' + Master_FC
+            out_feature_class = 'Clip_' + lyr + '_' + item.replace(' ','') + '_' + Master_FC
 
             # Execute Clip
             arcpy.Clip_analysis(in_features, clip_features, out_feature_class)
