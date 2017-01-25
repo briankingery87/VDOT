@@ -1,3 +1,3 @@
 # VDOT
 
-Assortment of scripts written for VDOT along with content for ArcGIS Online
+Assortment of scripts written for VDOT to make my life easier.
