@@ -43,11 +43,11 @@ fdnum = 1
 fcnum = 1
 for fds in fdslist:
     fds_describe = arcpy.Describe(fds)
-    file.write(str(fdnum) + " FD Name: " + fds_describe.name + "\n")
+    file.write(str(fdnum) + " " + fds_describe.name + "\n")
     fds_fclist = arcpy.ListFeatureClasses("","",fds)
     for fc in fds_fclist:
         fc_describe = arcpy.Describe(fc)
-        file.write("\t" + str(fdnum) + "." + str(fcnum)+ fc_describe.name + "\n")
+        file.write("\t" + str(fdnum) + "." + str(fcnum)+ " " + fc_describe.name + "\n")
         file.write("\tPath:         {0}".format(fc_describe.catalogPath) + "\n")
         file.write("\tShape Type:   {0}".format(fc_describe.shapeType) + "\n")
         file.write("\tDescription:     " + "\n")
