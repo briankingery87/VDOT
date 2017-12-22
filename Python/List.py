@@ -15,7 +15,7 @@ env.overwriteOutput = True
 
 ExecutionStartTime = datetime.datetime.now()
 
-file = open(r"C:\Users\brian.kingery@vdot.virginia.gov\Desktop\Kingery\Python\DataDictionary\20171221_GISP_FileLog.txt", "w")
+file = open(r"C:\Users\brian.kingery@vdot.virginia.gov\Desktop\Kingery\Python\DataDictionary\GISP_FileLog.txt", "w")
 print "Started: %s\n" % ExecutionStartTime.strftime('%A, %B %d, %Y %I:%M:%S %p')
 file.write("Started: %s\n\n" % ExecutionStartTime.strftime('%A, %B %d, %Y %I:%M:%S %p') + "\n")
 file.write("The following is a list of feature datasets and feature classes that are located in " + env.workspace + "\n")
@@ -86,7 +86,7 @@ for fc in fclist:
         file.write("\t\t\tRequired:    {0}".format(field.required) + "\n")
         file.write("\t\t\tScale:       {0}".format(field.scale) + "\n")
         file.write("\t\t\tPrecision:   {0}".format(field.precision) + "\n")
-        file.write("\t\t\tDescription:    ")
+        file.write("\t\t\tDescription:    " + "\n")
         fieldnum+=1
     fcnum+=1
 
@@ -98,6 +98,7 @@ for table in tablelist:
         t_describe = arcpy.Describe(table)
         file.write(str(tnum)+ " " + t_describe.name + "\n")
         file.write("\tPath: {0}".format(t_describe.catalogPath) + "\n")
+        file.write("\tDescription:     " + "\n")
         fieldlist = arcpy.ListFields(table)
         fieldnum = 1
         for field in fieldlist:
@@ -112,7 +113,7 @@ for table in tablelist:
             file.write("\t\tDescription:    " + "\n")
             fieldnum+=1
     except:
-        file.write("Error: " + table + "\n")
+        file.write(str(tnum)+ " " + "Error: " + table + "\n")
     tnum+=1
 
 ExecutionEndTime = datetime.datetime.now()
