@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------------
-# Name:         List.py
+# Name:         GISPsdeScan.py
 # Location:     C:\Users\brian.kingery@vdot.virginia.gov\Desktop\Kingery\Python\DataDictionary
 # Purpose:      List all items in GISP.sde
 # Author:       Brian Kingery
-# Created:      12/21/2017
+# Created:      12/22/2017
 #-------------------------------------------------------------------------------
 
 import arcpy, time, datetime
@@ -15,7 +15,7 @@ env.overwriteOutput = True
 
 ExecutionStartTime = datetime.datetime.now()
 
-file = open(r"C:\Users\brian.kingery@vdot.virginia.gov\Desktop\Kingery\Python\DataDictionary\GISP_FileLog.txt", "w")
+file = open(r"C:\Users\brian.kingery@vdot.virginia.gov\Desktop\Kingery\Python\DataDictionary\GISPsdeScan.txt", "w")
 print "Started: %s\n" % ExecutionStartTime.strftime('%A, %B %d, %Y %I:%M:%S %p')
 file.write("Started: %s\n\n" % ExecutionStartTime.strftime('%A, %B %d, %Y %I:%M:%S %p') + "\n")
 file.write("The following is a list of feature datasets and feature classes that are located in " + env.workspace + "\n")
@@ -56,13 +56,18 @@ for fds in fdslist:
         for field in fieldlist:
             # Print field properties
             file.write("\t\t" + str(fdnum) + "." + str(fcnum)+ "." + str(fieldnum)+ " " + field.name + "\n")
-            file.write("\t\t\tAlias:       {0}".format(field.aliasName) + "\n")
-            file.write("\t\t\tType:        {0}".format(field.type) + "\n")
-            file.write("\t\t\tIs Editable: {0}".format(field.editable) + "\n")
-            file.write("\t\t\tRequired:    {0}".format(field.required) + "\n")
-            file.write("\t\t\tScale:       {0}".format(field.scale) + "\n")
-            file.write("\t\t\tPrecision:   {0}".format(field.precision) + "\n")
-            file.write("\t\t\tDescription:    " + "\n")
+            file.write("\t\t\tDescription:      " + "\n")
+            file.write("\t\t\tAlias:         {0}".format(field.aliasName) + "\n")
+            file.write("\t\t\tBaseName:      {0}".format(field.baseName) + "\n")
+            file.write("\t\t\tDefault Value: {0}".format(field.defaultValue) + "\n")
+            file.write("\t\t\tDomain:        {0}".format(field.domain) + "\n")
+            file.write("\t\t\tIs Editable:   {0}".format(field.editable) + "\n")
+            file.write("\t\t\tIs Nullable:   {0}".format(field.isNullable) + "\n")
+            file.write("\t\t\tLength:        {0}".format(field.length) + "\n")
+            file.write("\t\t\tPrecision:     {0}".format(field.precision) + "\n")
+            file.write("\t\t\tRequired:      {0}".format(field.required) + "\n")
+            file.write("\t\t\tScale:         {0}".format(field.scale) + "\n")
+            file.write("\t\t\tType:          {0}".format(field.type) + "\n")
             fieldnum+=1
         fcnum+=1
     fdnum+=1
@@ -71,7 +76,7 @@ for fds in fdslist:
 file.write("\nThe following are feature classes outside of datasets\n" + "\n")
 for fc in fclist:
     fc_describe = arcpy.Describe(fc)
-    file.write("\t" + str(fcnum)+ fc_describe.name + "\n")
+    file.write("\t" + str(fcnum)+ " " + fc_describe.name + "\n")
     file.write("\tPath:         {0}".format(fc_describe.catalogPath) + "\n")
     file.write("\tShape Type:   {0}".format(fc_describe.shapeType) + "\n")
     file.write("\tDescription:     " + "\n")
@@ -80,13 +85,18 @@ for fc in fclist:
     for field in fieldlist:
         # Print field properties
         file.write("\t\t" + str(fcnum)+ "." + str(fieldnum)+ " " + field.name + "\n")
-        file.write("\t\t\tAlias:       {0}".format(field.aliasName) + "\n")
-        file.write("\t\t\tType:        {0}".format(field.type) + "\n")
-        file.write("\t\t\tIs Editable: {0}".format(field.editable) + "\n")
-        file.write("\t\t\tRequired:    {0}".format(field.required) + "\n")
-        file.write("\t\t\tScale:       {0}".format(field.scale) + "\n")
-        file.write("\t\t\tPrecision:   {0}".format(field.precision) + "\n")
-        file.write("\t\t\tDescription:    " + "\n")
+        file.write("\t\t\tDescription:      " + "\n")
+        file.write("\t\t\tAlias:         {0}".format(field.aliasName) + "\n")
+        file.write("\t\t\tBaseName:      {0}".format(field.baseName) + "\n")
+        file.write("\t\t\tDefault Value: {0}".format(field.defaultValue) + "\n")
+        file.write("\t\t\tDomain:        {0}".format(field.domain) + "\n")
+        file.write("\t\t\tIs Editable:   {0}".format(field.editable) + "\n")
+        file.write("\t\t\tIs Nullable:   {0}".format(field.isNullable) + "\n")
+        file.write("\t\t\tLength:        {0}".format(field.length) + "\n")
+        file.write("\t\t\tPrecision:     {0}".format(field.precision) + "\n")
+        file.write("\t\t\tRequired:      {0}".format(field.required) + "\n")
+        file.write("\t\t\tScale:         {0}".format(field.scale) + "\n")
+        file.write("\t\t\tType:          {0}".format(field.type) + "\n")
         fieldnum+=1
     fcnum+=1
 
@@ -104,16 +114,21 @@ for table in tablelist:
         for field in fieldlist:
             # Print field properties
             file.write("\t" + str(tnum)+ "." + str(fieldnum)+ " " + field.name + "\n")
-            file.write("\t\tAlias:       {0}".format(field.aliasName) + "\n")
-            file.write("\t\tType:        {0}".format(field.type) + "\n")
-            file.write("\t\tIs Editable: {0}".format(field.editable) + "\n")
-            file.write("\t\tRequired:    {0}".format(field.required) + "\n")
-            file.write("\t\tScale:       {0}".format(field.scale) + "\n")
-            file.write("\t\tPrecision:   {0}".format(field.precision) + "\n")
-            file.write("\t\tDescription:    " + "\n")
+            file.write("\t\tDescription:      " + "\n")
+            file.write("\t\tAlias:         {0}".format(field.aliasName) + "\n")
+            file.write("\t\tBaseName:      {0}".format(field.baseName) + "\n")
+            file.write("\t\tDefault Value: {0}".format(field.defaultValue) + "\n")
+            file.write("\t\tDomain:        {0}".format(field.domain) + "\n")
+            file.write("\t\tIs Editable:   {0}".format(field.editable) + "\n")
+            file.write("\t\tIs Nullable:   {0}".format(field.isNullable) + "\n")
+            file.write("\t\tLength:        {0}".format(field.length) + "\n")
+            file.write("\t\tPrecision:     {0}".format(field.precision) + "\n")
+            file.write("\t\tRequired:      {0}".format(field.required) + "\n")
+            file.write("\t\tScale:         {0}".format(field.scale) + "\n")
+            file.write("\t\tType:          {0}".format(field.type) + "\n")
             fieldnum+=1
     except:
-        file.write(str(tnum)+ " " + "Error: " + table + "\n")
+        file.write(str(tnum)+ " " + table + " " + "-----ERROR-----"  "\n")
     tnum+=1
 
 ExecutionEndTime = datetime.datetime.now()
