@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ElementTree
 from arcpy import env
 from time import strftime
 
-xmlfile = 'C:/Users/brian.kingery/Desktop/Kingery/Projects/511/XML/TrafficCameras_20180413.xml'
+xmlfile = 'C:/Users/brian.kingery/Desktop/Kingery/Projects/511/XML/TrafficCameras_20180414.xml'
 
 tree = ElementTree.parse(xmlfile)
 root = tree.getroot()
@@ -23,20 +23,20 @@ for camera in TrafficCameras:
 ##            print LatLong.text
 
 
-####Get Properties
-##    Direction = camera.getchildren()[2].find('direction').text
-##    MRM = camera.getchildren()[2].find('mrm').text
-##    ID = camera.getchildren()[2].find('id').text
-##    Jurisdiction = camera.getchildren()[2].find('jurisdiction').text
-##    Route = camera.getchildren()[2].find('route').text
-##    Description = camera.getchildren()[2].find('description').text
-##    DeviceID = camera.getchildren()[2].find('deviceid').text
-##    RTMP_URL = camera.getchildren()[2].find('rtmp_url').text
-##    IOS_URL = camera.getchildren()[2].find('ios_url').text
-##    RTSP_URL = camera.getchildren()[2].find('rtsp_url').text
-##    IMAGE_URL = camera.getchildren()[2].find('image_url').text
-##    Active = camera.getchildren()[2].find('active').text
-##    print str(Direction)+'~'+str(MRM)+'~'+str(ID)+'~'+str(Jurisdiction)+'~'+str(Route)+'~'+str(Description)+'~'+str(DeviceID)+'~'+str(RTMP_URL)+'~'+str(IOS_URL)+'~'+str(RTSP_URL)+'~'+str(IMAGE_URL)+'~'+str(Active)
+##Get Properties
+    Direction = camera.getchildren()[2].find('direction').text
+    MRM = camera.getchildren()[2].find('mrm').text
+    ID = camera.getchildren()[2].find('id').text
+    Jurisdiction = camera.getchildren()[2].find('jurisdiction').text
+    Route = camera.getchildren()[2].find('route').text
+    Description = camera.getchildren()[2].find('description').text
+    DeviceID = camera.getchildren()[2].find('deviceid').text
+    RTMP_URL = camera.getchildren()[2].find('rtmp_url').text
+    IOS_URL = camera.getchildren()[2].find('ios_url').text
+    RTSP_URL = camera.getchildren()[2].find('rtsp_url').text
+    IMAGE_URL = camera.getchildren()[2].find('image_url').text
+    Active = camera.getchildren()[2].find('active').text
+    print str(Direction)+'~'+str(MRM)+'~'+str(ID)+'~'+str(Jurisdiction)+'~'+str(Route)+'~'+str(Description)+'~'+str(DeviceID)+'~'+str(RTMP_URL)+'~'+str(IOS_URL)+'~'+str(RTSP_URL)+'~'+str(IMAGE_URL)+'~'+str(Active)
 
 
 
