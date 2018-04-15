@@ -26,64 +26,6 @@ def createXML(workarea,url,name):
     urllib.urlretrieve(url, xml_file)
     print 'Retrieved:',xmlDoc
 
-def xmlParser(xmlfile):
-    datalist = []
-    # column headers for CSV file
-
-    columnLat       = "Latitude"
-    columnLon       = "Longitude"
-
-    longitude
-    latitude
-    direction
-    mrm
-    cameraid
-    jurisdiction
-    route
-    description
-    image_url
-    
-    columnID        = "ID"
-    columnCompany   = "Company"
-    columnAddress   = "Address"
-    columnCity      = "City"
-    columnState     = "State"
-    columnZipcode   = "Zipcode"
-    columnCountry   = "Country"
-    columnPhone     = "Phone"
-    columnMType     = "Member_Type"
-    columnType      = "Type"
-    columnURL       = "URL"
-    columnLat       = "Latitude"
-    columnLon       = "Longitude"
-    headers = columnID, columnCompany, columnAddress, columnCity, columnState, columnZipcode, columnCountry, columnPhone, columnMType, columnType, columnURL, columnLat, columnLon
-    datalist.append(headers)
-
-    i=0
-    tree = ElementTree.parse(xmlfile)
-    for node in tree.findall('marker'):
-        ID      = node.attrib.get('id')
-        company = node.attrib.get('company')
-        address = node.attrib.get('address')
-        city    = node.attrib.get('city')
-        state   = node.attrib.get('state')
-        zipcode = node.attrib.get('zip')
-        country = node.attrib.get('country')
-        #phone   = data["ProviderFinderResult"][i]["Phone"].replace(" ","").replace("(","").replace(")","").replace("-","")
-        phone   = node.attrib.get('phone')
-        mType   = node.attrib.get('member_type')
-        _type   = node.attrib.get('type')
-        url     = node.attrib.get('url')
-        lat     = node.attrib.get('lat')
-        lon     = node.attrib.get('lng')
-
-        entry = ID, company, address, city, state, zipcode, country, phone, mType, _type, url, lat, lon
-        datalist.append(entry)
-        i+=1
-
-    print 'Items:    ',i
-    return datalist
-
 #-------------------------------------------------------------------------------
 
 ExecutionStartTime = datetime.datetime.now()
